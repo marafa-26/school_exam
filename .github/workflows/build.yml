@@ -1,4 +1,4 @@
-name: Generer un APK
+name: Générer un APK
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Decompresser le projet
+      - name: Décompresser le projet
         run: unzip -o projet.zip -d .
 
       - uses: actions/setup-java@v4
@@ -24,11 +24,16 @@ jobs:
         with:
           channel: 'stable'
 
-      - run: flutter pub get
+      - name: Flutter Pub Get
+        run: flutter pub get
 
-      - run: flutter build apk --release
+      - name: Générer les icônes de l'application
+        run: dart run flutter_launcher_icons
+
+      - name: Compiler l'APK
+        run: flutter build apk --release
 
       - uses: actions/upload-artifact@v4
         with:
-          name: school-exam-apk
+          name: examen scolaire apk
           path: build/app/outputs/flutter-apk/app-release.apk
