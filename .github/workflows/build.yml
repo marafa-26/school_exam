@@ -24,19 +24,6 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Corriger compileSdk
-        run: |
-          python3 - << 'PYEOF'
-          import re, os
-          path = 'android/app/build.gradle.kts'
-          with open(path, 'r') as f:
-              content = f.read()
-          content = re.sub(r'compileSdk\s*=\s*\S+', 'compileSdk = 35', content)
-          with open(path, 'w') as f:
-              f.write(content)
-          print("compileSdk = 35 appliqué avec succès")
-          PYEOF
-
       - name: Flutter Pub Get
         run: flutter pub get
 
