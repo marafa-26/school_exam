@@ -24,6 +24,10 @@ jobs:
         with:
           channel: 'stable'
 
+      - name: Corriger compileSdk
+        run: |
+          sed -i 's/compileSdk = flutter.compileSdkVersion/compileSdk = 35/' android/app/build.gradle.kts || echo "Déjà corrigé"
+
       - name: Flutter Pub Get
         run: flutter pub get
 
