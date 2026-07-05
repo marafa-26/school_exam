@@ -24,9 +24,6 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Corriger compileSdk
-        run: find . -path "*/app/build.gradle*" -exec sed -i 's/compileSdk = flutter.compileSdkVersion/compileSdk = 35/' {} \;
-
       - name: Flutter Pub Get
         run: flutter pub get
 
